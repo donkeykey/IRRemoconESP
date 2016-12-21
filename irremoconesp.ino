@@ -55,7 +55,6 @@ int split(String *result, size_t resultsize, String data, char delimiter){
 }
 
 void handleSend() {
-  //char data[800];
   String splitstring[200] = {"\0"}; 
   char delimiter = ',';
   size_t arraysize = SIZE_OF_ARRAY(splitstring);
@@ -69,45 +68,7 @@ void handleSend() {
     rawData[i] = splitstring[i].toInt();
     Serial.println(rawData[i]);
   }
-  /*
-  String(server.arg("bit")).toCharArray(bits,8);
-  char *tp;
-  tp = strtok(data, ",");
-  rawData[0] = atoi(tp);
-  int i = 1;
-  while (tp != NULL) {
-    rawData[i] = atoi(strtok(NULL, ","));
-    i++;
-  }
-  i--;
-  Serial.print("i : ");
-  Serial.println(i);
-  //Serial.println(rawData[i-1]);
-  */
-  /*
-  for (int j = 0; j < i; j++) {
-    Serial.println(rawData[j]);
-  }
-  */
-  //unsigned int rawData[] = {3550,1750, 500,450, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,450, 500,450, 500,450, 500,450, 500,1300, 500,400, 500,400, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,400, 500,1300, 500};
-  //unsigned int rawData[] = {9050,4450, 650,550, 650,1650, 650,550, 650,550, 650,550, 650,550, 650,550, 650,1650, 650,1650, 650,550, 650,1650, 650,1650, 650,550, 650,1650, 650,1650, 650,550, 650,550, 650,1650, 650,550, 650,1650, 650,1650, 650,550, 650,550, 650,550, 650,1650, 650,550, 650,1650, 650,550, 650,550, 650,1650, 650,1650, 650,1650, 650};
-  //int len = sizeof(rawData) / sizeof(unsigned int);
-  //Serial.println(i);
   irsend.sendRaw(rawData, index, bits.toInt());
-  //irsend.sendRaw(rawData, inde, 32);
-
-  // unsigned int  rawData[99] = {3550,1750, 500,450, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,450, 500,450, 500,450, 500,450, 500,1300, 500,400, 500,400, 500,1300, 500,400, 500,400, 500,400, 500,400, 500,1300, 500,400, 500,1300, 500};  // PANASONIC 4004:1008485
-  /*
-  if (!strcmp(types, "panasonic")) {
-    Serial.println(response);
-    irsend.sendPanasonic(strtol(arg1, NULL, 16), strtol(arg2, NULL ,16));
-  } else if (!strcmp(types, "nec")) {
-    // 0x41B658A7
-    Serial.println(response);
-    //irsend.sendNEC(strtol(arg1, NULL, 16), strtol(arg2, NULL ,10));
-    irsend.sendNEC(0x41B658A7, 32);
-  }
-  */
   server.send ( 200, "text/html", data);
 }
 
@@ -135,7 +96,4 @@ void handleNotFound() {
 
 void loop() {
   server.handleClient();
-  // put your main code here, to run repeatedly:
-  //irsend.sendPanasonic(0x4004,0x1008485);
-  //delay(5000);
 }
